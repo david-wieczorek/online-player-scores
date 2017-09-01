@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import moment from 'moment';
+import React, { Component } from "react";
 
-const API = 'https://hn.algolia.com/api/v1/search?query=';
-const DEFAULT_QUERY = 'redux';
+const API = "http://cdn.55labs.com/demo/api.json";
 
-class MyComp extends Component {
+class Testfetch extends Component {
   constructor(props) {
     super(props);
 
@@ -17,15 +15,15 @@ class MyComp extends Component {
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    fetch(API + DEFAULT_QUERY)
+    fetch(API)
       .then(response => {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error('Something went wrong ...');
+          throw new Error("Something went wrong ...");
         }
       })
-      .then(data => this.setState({ hits: data.hits, isLoading: false }))
+      .then(data => this.setState({ hits: data.data, isLoading: false }))
       .catch(error => this.setState({ error, isLoading: false }));
   }
 
@@ -42,16 +40,17 @@ class MyComp extends Component {
     if (isLoading) {
       return <p>Loading ...</p>;
     }
+
     return (
       <div className="data-bloc">
         {hits.map(hit =>
           <section key={hit.objectID}>
             <h4>
-              {hit.author} - {moment(hit.created_at).format('DD/MM/YYYY')}
+              {hit.author}
             </h4>
-            <a href={hit.url}>
-              <i className="fa fa-rss" aria-hidden="true" /> {hit.title}
-            </a>
+            <p>
+              {hit.test}
+            </p>
           </section>
         )}
       </div>
@@ -59,4 +58,4 @@ class MyComp extends Component {
   }
 }
 
-export default MyComp;
+export default Testfetch;
