@@ -1,61 +1,51 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import * as d3 from 'd3';
 
-const API = "http://cdn.55labs.com/demo/api.json";
-
-class Testfetch extends Component {
+class GraphBar extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      hits: [],
-      isLoading: false,
-      error: null
-    };
+    this.createBarChart = this.createBarChart.bind(this);
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
-    fetch(API)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Something went wrong ...");
-        }
-      })
-      .then(data => this.setState({ hits: data.data, isLoading: false }))
-      .catch(error => this.setState({ error, isLoading: false }));
+    this.createBarChart();
+  }
+
+  componentDidUpdate() {
+    this.createBarChart();
+  }
+
+  createBarChart() {
+    const node = this.node;
+    const dataMax = d3.max(this.props.data);
+    const yScale = d3
+      .scaleLinear()
+      .domain([0, dataMax])
+      .range([0, this.props.size[1]]);
+
+    d3
+      .select(node)
+      .selectAll('rect')
+      .data(this.props.data)
+      .enter()
+      .append('rect');
+
+    d3.select(node).selectAll('rect').data(this.props.data).exit().remove();
+
+    d3
+      .select(node)
+      .selectAll('rect')
+      .data(this.props.data)
+      .style('fill', '#fe9922')
+      .attr('x', (d, i) => i * 25)
+      .attr('y', d => this.props.size[1] - yScale(d))
+      .attr('height', d => yScale(d))
+      .attr('width', 25);
   }
 
   render() {
-    const { hits, isLoading, error } = this.state;
-
-    if (error) {
-      return (
-        <p>
-          {error.message}
-        </p>
-      );
-    }
-    if (isLoading) {
-      return <p>Loading ...</p>;
-    }
-
-    return (
-      <div className="data-bloc">
-        {hits.map(hit =>
-          <section key={hit.objectID}>
-            <h4>
-              {hit.author}
-            </h4>
-            <p>
-              {hit.test}
-            </p>
-          </section>
-        )}
-      </div>
-    );
+    return <svg ref={node => (this.node = node)} width={500} height={500} />;
   }
 }
 
-export default Testfetch;
+export default GraphBar;

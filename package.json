@@ -1,50 +1,54 @@
 {
-    "name": "onlineplayerscores",
-    "version": "1.0.0",
-    "author": {
-        "name": "David Wieczorek",
-        "email": "davidwieczorekprogmail.com"
-    },
-    "private": true,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/david-wieczorek/online-player-scores.git"
-    },
-    "dependencies": {
-        "font-awesome": "^4.7.0",
-        "lodash": "^4.17.4",
-        "moment": "^2.18.1",
-        "normalize.css": "^7.0.0",
-        "react": "^15.6.1",
-        "react-dom": "^15.6.1",
-        "react-router-dom": "^4.1.2",
-        "react-scripts": "1.0.11",
-        "react-test-renderer": "^15.6.1",
-        "source-map-explorer": "^1.4.0"
-    },
-    "devDependencies": {
-        "enzyme": "^2.9.1",
-        "flow-bin": "^0.53.1",
-        "husky": "^0.14.3",
-        "jest-enzyme": "^3.7.0",
-        "lint-staged": "^4.0.3",
-        "node-sass-chokidar": "0.0.3",
-        "npm-run-all": "^4.0.2",
-        "prettier": "^1.5.3"
-    },
-    "lint-staged": {
-        "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
-    },
-    "scripts": {
-        "analyze": "source-map-explorer build/static/js/main.*",
-        "precommit": "lint-staged",
-        "start-js": "react-scripts start",
-        "flow": "flow",
-        "start": "npm-run-all -p watch-css start-js",
-        "build": "npm run build-css && react-scripts build",
-        "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject",
-        "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-        "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
-    }
+  "name": "onlineplayerscores",
+  "version": "1.0.0",
+  "author": {
+    "name": "David Wieczorek",
+    "email": "davidwieczorekprogmail.com"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/david-wieczorek/online-player-scores.git"
+  },
+  "dependencies": {
+    "d3": "^4.10.0",
+    "font-awesome": "^4.7.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "normalize.css": "^7.0.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.2",
+    "react-scripts": "1.0.11",
+    "react-test-renderer": "^15.6.1",
+    "source-map-explorer": "^1.4.0"
+  },
+  "devDependencies": {
+    "enzyme": "^2.9.1",
+    "flow-bin": "^0.53.1",
+    "husky": "^0.14.3",
+    "jest-enzyme": "^3.7.0",
+    "lint-staged": "^4.0.3",
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.0.2",
+    "prettier": "^1.5.3"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "precommit": "lint-staged",
+    "start-js": "react-scripts start",
+    "flow": "flow",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
+  }
 }
