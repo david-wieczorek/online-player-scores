@@ -3,13 +3,13 @@ import { Route, HashRouter } from "react-router-dom";
 
 import App from "./app";
 import Home from "./views/home";
-import Codeview from "./views/code";
+import Graphs from "./views/graphs";
 
 const Routes = () =>
   <HashRouter>
     <App>
       <Route exact path="/" component={Home} />
-      <Route path="/codes" component={Codeview} />
+      <Route path="/graphs" component={Graphs} />
     </App>
   </HashRouter>;
 
