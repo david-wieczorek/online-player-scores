@@ -1,0 +1,48 @@
+h1 {
+   font-size: 3em;
+}
+
+h2 {
+   font-size: 2.5em;
+}
+
+h3 {
+   font-size: 2.0em;
+}
+
+h4 {
+   font-size: 1.6em;
+}
+
+h5 {
+   font-size: 1.3em;
+}
+
+h6 {
+   font-size: 1.1em;
+}
+
+p,
+span,
+a {
+   font-family: 'Open Sans', sans-serif;
+   font-size: 1.4em;
+}
+
+p {
+   line-height: 1.42857;
+}
+
+h1,
+h2,
+h3,
+H4,
+h5,
+h6 {
+   margin: 0 0 10px 0;
+}
+
+a {
+   text-decoration: none;
+   color: $violet;
+}
